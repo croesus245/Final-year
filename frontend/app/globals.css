@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-poppins: 'Poppins', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0d0d0d;
+  color: #e8e8e8;
+  font-family: var(--font-inter);
+  line-height: 1.6;
+}
+
+/* Typography Utilities */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins);
+  font-weight: 700;
+}
+
+h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
+h2 { font-size: 2rem; letter-spacing: -0.01em; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+@media (max-width: 768px) {
+  h1 { font-size: 1.875rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff6b00;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff8c00;
+}
+
+/* Focus Styles */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid #ff6b00;
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Utility Classes */
+.text-gradient {
+  background: linear-gradient(135deg, #ff6b00 0%, #ffb347 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-base {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply btn-base bg-primary-orange text-white hover:bg-secondary-orange shadow-soft;
+}
+
+.btn-secondary {
+  @apply btn-base bg-dark-gray text-light-gray border border-medium-gray hover:bg-medium-gray;
+}
+
+.btn-ghost {
+  @apply btn-base text-primary-orange hover:text-secondary-orange;
+}
+
+/* Form Inputs */
+input, textarea, select {
+  background-color: #1a1a1a;
+  color: #e8e8e8;
+  border-color: #2d2d2d;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #ff6b00;
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+}
+
+::placeholder {
+  color: #808080;
+}
+
+/* Cards */
+.card {
+  @apply bg-dark-gray rounded-lg shadow-soft border border-medium-gray transition-all duration-300;
+}
+
+.card:hover {
+  @apply shadow-lg border-accent-orange;
+}
+
+/* Responsive Container */
+.container-responsive {
+  @apply mx-auto px-4 sm:px-6 md:px-8 lg:px-10 max-w-7xl;
+}
+
+/* Loading Skeleton */
+.skeleton {
+  @apply bg-medium-gray animate-pulse;
+}
+
+/* PDF Viewer Container */
+.pdf-container {
+  @apply rounded-lg overflow-hidden bg-black;
+}
+
+.pdf-controls {
+  @apply flex items-center justify-between gap-2 bg-dark-gray p-3 border-b border-medium-gray flex-wrap;
+}
+
+/* Grid Utilities */
+.grid-responsive {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+}
+
+/* Badge */
+.badge {
+  @apply inline-block px-3 py-1 rounded-full text-sm font-medium bg-medium-gray text-light-gray;
+}
+
+.badge-orange {
+  @apply bg-primary-orange bg-opacity-20 text-secondary-orange;
+}
+
+/* Error and Success States */
+.input-error {
+  @apply border-red-500 focus:border-red-500 focus:ring-red-500 focus:ring-opacity-20;
+}
+
+.input-success {
+  @apply border-green-500 focus:border-green-500;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .no-print {
+    display: none;
+  }
+}
