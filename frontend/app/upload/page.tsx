@@ -100,7 +100,7 @@ export default function Upload() {
           title: '',
           author: '',
           department: DEPARTMENTS[0],
-          year: new Date().getFullYear(),
+          year: new Date().getFullYear().toString(),
           abstract: '',
           supervisor: '',
         });
@@ -198,10 +198,11 @@ export default function Upload() {
                 {/* Department & Year */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-light-gray mb-2">
+                    <label htmlFor="department" className="block text-sm font-medium text-light-gray mb-2">
                       Department *
                     </label>
                     <select
+                      id="department"
                       name="department"
                       value={formData.department}
                       onChange={handleInputChange}
@@ -215,10 +216,11 @@ export default function Upload() {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-light-gray mb-2">
+                    <label htmlFor="year" className="block text-sm font-medium text-light-gray mb-2">
                       Year *
                     </label>
                     <select
+                      id="year"
                       name="year"
                       value={formData.year}
                       onChange={handleInputChange}

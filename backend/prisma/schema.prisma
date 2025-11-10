@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id              String    @id @default(cuid())
+  projectId       String    @unique
+  title           String    @db.VarChar(255)
+  author          String    @db.VarChar(255)
+  department      String    @db.VarChar(255)
+  year            Int
+  abstract        String    @db.LongText
+  supervisor      String    @db.VarChar(255)
+  fileName        String    @db.VarChar(255)
+  fileSize        Int
+  filePath        String    @db.VarChar(500)
+  status          String    @default("pending")
+  rejectionReason String?   @db.Text
+  views           Int       @default(0)
+  downloads       Int       @default(0)
+  ratings         Json?
+  comments        Json?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([status])
+  @@index([department])
+  @@index([year])
+}
+
+model Admin {
+  id            String    @id @default(cuid())
+  email         String    @unique @db.VarChar(255)
+  passwordHash  String    @db.VarChar(255)
+  role          String    @default("admin")
+  lastLogin     DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([email])
+}
